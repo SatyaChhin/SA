@@ -42,6 +42,16 @@ $widgets['before_content'][] = [
             'progressClass' => 'progress-bar bg-info',
             'hint' => '8544 more until next milestone.',
         ],
+
+         [
+            'type' => 'progress_white',
+            'class' => 'card mb-2',
+            'value' => $group ,
+            'description' => 'Registered Group.',
+            'progress' => $group,
+            'progressClass' => 'progress-bar bg-info',
+            'hint' => '8544 more until next milestone.',
+        ],
     ],
 ];
 @endphp

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Libraries\dashboardLib;
 use App\Http\Controllers\Controller;
 use App\Models\Classroom;
+use App\Models\Group;
 use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Teacher;
@@ -24,7 +25,7 @@ class LibrariesCrudController extends Controller
         $student = Student::all()->count();
         $teacher = Teacher::all()->count();
         $subject = Subject::all()->count();
-        return view('dashboard', compact('student','teacher','subject'));
+        $group = Group::all()->count();
+        return view('dashboard', compact('student', 'teacher', 'subject','group'));
     }
-
 }
