@@ -22,6 +22,6 @@ Route::group([
     'prefix'     => config('backpack.base.route_prefix', 'admin'),
     'middleware' => ['web',config('backpack.base.web_middleware', 'web')],
     'namespace'  => 'Admin',
-], function () { // custom admin routes
+], function () { 
     Route::crud('group', 'GroupCrudController');
 }); 

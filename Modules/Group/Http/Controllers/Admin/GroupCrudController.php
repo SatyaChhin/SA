@@ -2,7 +2,7 @@
 
 namespace Modules\Group\Http\Controllers\Admin;
 
-use App\Http\Requests\GroupRequest;
+use Modules\Group\Http\Requests\GroupRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -26,7 +26,7 @@ class GroupCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Group::class);
+        CRUD::setModel(\Modules\Group\Entities\Group::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/group');
         CRUD::setEntityNameStrings('group', 'groups');
     }

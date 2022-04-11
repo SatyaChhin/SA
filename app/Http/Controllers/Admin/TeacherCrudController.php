@@ -101,9 +101,6 @@ class TeacherCrudController extends CrudController
             'labal' => 'Gender'
         ]);
 
-
-       
-
         $this->crud->addColumn([
             'name' => 'address',
             'type' => 'text',

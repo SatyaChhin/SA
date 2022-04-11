@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Controllers\Controller;
 use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\TeacherResource;
 
 class TeacherController extends Controller
 {
@@ -17,16 +19,15 @@ class TeacherController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
-        $search_term = $request->input('name');
-        // \Log::info($search_term);
-        if ($search_term) {
-            $results = Teacher::where('name', 'LIKE', '%' . $search_term . '%')->paginate(10);
-        } else {
-            $results = Teacher::paginate(10);
-        }
-        return $results;
-
+    {        
+        //  \Log::info($request);
+            $search_term = $request->input('name');
+            if ($search_term) {
+                $results = Teacher::where('name', 'LIKE', '%' . $search_term . '%')->paginate(10);
+            } else {
+                $results = Teacher::paginate(10);
+            }
+            return TeacherResource::collection($results);
     }
 
     /**
@@ -36,8 +37,8 @@ class TeacherController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    { 
+       
     }
 
     /**
@@ -46,9 +47,9 @@ class TeacherController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function show(Request $request)
     {
-        //
+       
     }
 
     /**
@@ -69,8 +70,14 @@ class TeacherController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Student $student)
-    {
-        //
-    }
+  
+        public function destroy(Request $request, $id)
+        {
+            $teacher = Teacher::find($id);
+            $teacher->delete();
+            return response()->json([
+                "Message" => 'delect Data Successfully'
+            ]);
+        }
+
 }
